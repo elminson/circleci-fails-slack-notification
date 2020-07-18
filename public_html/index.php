@@ -1,6 +1,6 @@
 <?php
 require 'vendor/autoload.php';
-require 'SQLiteConnection.php';
+require 'DBConnection.php';
 
 use App\SQLiteConnection;
 use GuzzleHttp\Client;
@@ -40,7 +40,7 @@ class circleCISlackNotifier
 		$this->channel = $_ENV['SLACK_CHANNEL']; // dev-circleci
 		$this->limit = $_ENV['LIMIT'];
 		$this->asUser = $_ENV['SEND_AS_USER']; // circleci-notification
-		$this->pdo = (new SQLiteConnection())->connect();
+		$this->pdo = (new DBConnection())->connect();
 		$this->baseUriHistory = $_ENV['BASE_URI_HISTORY'];
 		$this->baseUriMessage = $_ENV['BASE_URI_MESSAGE'];
 		$this->logFileName = $_ENV['LOG_FILE_NAME'];
