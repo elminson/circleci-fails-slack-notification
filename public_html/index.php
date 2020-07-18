@@ -108,7 +108,6 @@ class circleCISlackNotifier
 			$slackId = $this->usersNamesMap[$user]['slack_id'];
 			$userName = $this->usersNamesMap[$user]['name'];
 
-
 			if ($this->checkNotificationSent($hash, $ts)) {
 
 				$messageOriginal = $message['attachments'][0]['fallback'];
@@ -125,6 +124,7 @@ class circleCISlackNotifier
 			} else {
 				$this->resultMessages[] = "{\"sent\": false, \"hash\": \"$hash\", \"message\": \"No message to send to $userName\", \"time\": " . date("Y-m-d H:i:s") . "}\n";
 			}
+
 		}
 
 	}
@@ -174,6 +174,7 @@ class circleCISlackNotifier
 
 			return true;
 		} catch (\PDOException $e) {
+
 			$message = json_encode(\PDOException($e->getMessage(), (int)$e->getCode()));
 			echo "{\"code\": " . $e->getCode() . ",\"message\": \"$message\", \"data\":\"" . $e->getMessage() . "\",time\": " . date("Y-m-d H:i:s") . "}\n";
 			die();
@@ -222,9 +223,11 @@ class circleCISlackNotifier
 				$stmt->execute();
 
 				return true;
+
 			}
 
 		} catch (\PDOException $e) {
+
 			$message = json_encode(\PDOException($e->getMessage(), (int)$e->getCode()));
 			echo "{\"code\": " . $e->getCode() . ",\"message\": \"$message\", \"data\":\"" . $e->getMessage() . "\",time\": " . date("Y-m-d H:i:s") . "}\n";
 			die();
@@ -253,7 +256,7 @@ class circleCISlackNotifier
 
 		}
 
-		return $result;
+		return $this->resultMessages;
 
 	}
 
