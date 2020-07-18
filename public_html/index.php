@@ -59,12 +59,7 @@ class circleCISlackNotifier
 
 		try {
 
-			$client = new Client([
-									 // Base URI is used with relative requests
-									 'base_uri' => $url,
-									 // You can set any number of default request options.
-									 'timeout' => 5.0,
-								 ]);
+			$client = new Client(['base_uri' => $url, 'timeout' => 5.0,]);
 			$response = $client->request('GET');
 			$response->getBody();
 
