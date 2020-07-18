@@ -8,5 +8,5 @@ RUN docker-php-ext-install mysqli
 RUN docker-php-ext-install pdo pdo_mysql
 
 WORKDIR /var/www/html/
-
-RUN while /usr/local/bin/php index.php >> /var/www/html/script.log; do sleep 10; done
+#need to work on cronjob
+CMD while /usr/local/bin/php index.php >> /var/www/html/script.log; do sleep 10; done
